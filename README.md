@@ -1,6 +1,6 @@
 # State Farm Distracted Driver Detection
 
-***[State Farm Distracted Driver Detection](https://www.kaggle.com/c/state-farm-distracted-driver-detection/code) was originally a Kaggle Project.***</br>
+***[State Farm Distracted Driver Detection](https://www.kaggle.com/c/state-farm-distracted-driver-detection/overview) was originally a Kaggle Project.***</br>
 Kaggle is the battle arena and training ground for applied deep learning challenges and I have been drawn to one in particular: the State Farm Distracted Driver Detection challenge.
 
 ![Intro Image](https://storage.googleapis.com/kaggle-competitions/kaggle/5048/media/drivers_statefarm.png)
@@ -13,8 +13,11 @@ According to the CDC motor vehicle safety division, one in five car accidents is
 In this challenge we are given a training set of about 20K photos of drivers who are either in a focused or distracted state (e.g. holding phone, putting make up, etc.). The test set consists of around 80K images. The goal is to build a model that can accurately classify a given driver photo among a set of 10 classes.
 
 ## Now, Let's Build The Model
+Initially, I started with few cnn layers and maxpooling layers. But, wasn't able to yield a good enough score. So, after few more tweeks here there, I decided to use Transfer Learning.
 
+### ***EfficientNet***
+While reading some transfer learning papers, I came across an amazing intuition in a research paper called ***'[EfficientNet - Rethinking Model Scaling for Convolutional Neural Networks](http://proceedings.mlr.press/v97/tan19a/tan19a.pdf) ( which currently is the state-of-the-art model for CNN )'***.
 
-
+The paper proposes a very simple but useful methods for building a neural architecture. So, what I get from the paper is they first used the popular method called ***'[Neural Architecture Search](https://arxiv.org/pdf/2005.11074.pdf)'*** for building a baseline model with few tweeks like optimizing FLOPS rather than latency since they are not targeting any specific hardware device. Then, this search produces an efficient network, which they name EfficientNet-B0.
 
 
