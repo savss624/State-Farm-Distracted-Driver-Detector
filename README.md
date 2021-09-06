@@ -1,6 +1,7 @@
 # State Farm Distracted Driver Detection
 
-***[State Farm Distracted Driver Detection](https://www.kaggle.com/c/state-farm-distracted-driver-detection/overview) was originally a Kaggle Project.***</br>
+***[State Farm Distracted Driver Detection](https://www.kaggle.com/c/state-farm-distracted-driver-detection/overview) was originally a Kaggle Competition.***
+
 Kaggle is the battle arena and training ground for applied deep learning challenges and I have been drawn to one in particular: the State Farm Distracted Driver Detection challenge.
 
 ![Intro Image](https://storage.googleapis.com/kaggle-competitions/kaggle/5048/media/drivers_statefarm.png)
@@ -18,6 +19,14 @@ Initially, I started with few cnn layers and maxpooling layers. But, wasn't able
 ### ***EfficientNet***
 While reading some transfer learning papers, I came across an amazing intuition in a research paper called ***'[EfficientNet - Rethinking Model Scaling for Convolutional Neural Networks](http://proceedings.mlr.press/v97/tan19a/tan19a.pdf) ( which currently is the state-of-the-art model for CNN )'***.
 
-The paper proposes a very simple but useful methods for building a neural architecture. So, what I get from the paper is they first used the popular method called ***'[Neural Architecture Search](https://arxiv.org/pdf/2005.11074.pdf)'*** for building a baseline model with few tweeks like optimizing FLOPS rather than latency since they are not targeting any specific hardware device. Then, this search produces an efficient network, which they name EfficientNet-B0.
+#### Why this is called ***state-of-the-art model*** ?
+The paper proposes a very simple but useful methods for building a neural architecture. So, what I get from the paper is they first used the popular method called ***'[Neural Architecture Search](https://arxiv.org/pdf/2005.11074.pdf)'*** for building a baseline model with few tweeks like optimizing FLOPS rather than latency since they are not targeting any specific hardware device. Then, this search produces an efficient network, which they name ***EfficientNet-B0***.
 
+Second step is to scale the network for bigger models. So, after doing some experiments by scaling architecture parameters ( width, depth and resolution ), they obeserved that scaling all these parameter at once resulting in better accuracy with reduced FLOPS when compared to scaling them individually. And for scaling these paramters, they figured out a very interesting methodology rather than the tedious manual tuning, which they name ***Compound Scaling Method***. This method use a compound coefficient φ to uniformly scales network width, depth, and resolution in a principled way:
+
+![Scaling Method](https://amaarora.github.io/images/dwr.png)
+
+where α, β, γ are constants that can be determined by a small grid search. Intuitively, φ is a user-specified coeffi- cient that controls how many more resources are available for model scaling, while α, β, γ specify how to assign these extra resources to network width, depth, and resolution respectively.
+
+Using this method, they have achieved a better accuracy than any transfer learning model for almost all the computer vision datasets and also with reduced FLOPS thereby making the model incredibly faster.
 
