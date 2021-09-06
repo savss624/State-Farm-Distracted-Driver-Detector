@@ -42,3 +42,7 @@ Using this method, they have achieved a better accuracy than any transfer learni
 * ***Dense Layer - output layer of 10 units with good old 'softmax' activation function*** 
 
 ## Model Evaluation
+Finally, Now coming on model results
+
+***Our model achieved an accuracy of 99.88% on training data and 99.46% on testing data which is just awesome.<br>
+So, seems like EfficientNet Transfer Learning helped alot!!!.***
