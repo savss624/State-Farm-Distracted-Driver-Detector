@@ -13,7 +13,13 @@ According to the CDC motor vehicle safety division, one in five car accidents is
 ## Data
 In this challenge we are given a training set of about 20K photos of drivers who are either in a focused or distracted state (e.g. holding phone, putting make up, etc.). The test set consists of around 80K images. The goal is to build a model that can accurately classify a given driver photo among a set of 10 classes.
 
-## Now, Let's Build The Model
+For converting images into to numerical values (as Machine Learning Models only accepts numerical values ), I used keras inbuild function called ***ImageDataGenerator***.
+
+Image Data Generator preprocesses all the images in dataset and returns the tensor image data of images with size - 224 * 224 * 3. <br>Image Data Generator can also be used for Data Augmentation.
+
+***Splits the complete tensor image data into a two parts - training data (80%) and testing or validation data (20%), with batch size of 64.***
+
+## Now, Let's Build The Model Architecture
 Initially, I started with few cnn layers and maxpooling layers. But, wasn't able to yield a good enough score. So, after few more tweeks here there, I decided to use Transfer Learning.
 
 ### ***EfficientNet***
@@ -26,7 +32,13 @@ Second step is to scale the network for bigger models. So, after doing some expe
 
 ![Scaling Method](https://amaarora.github.io/images/dwr.png)
 
-where α, β, γ are constants that can be determined by a small grid search. Intuitively, φ is a user-specified coeffi- cient that controls how many more resources are available for model scaling, while α, β, γ specify how to assign these extra resources to network width, depth, and resolution respectively.
+where α, β, γ are constants that can be determined by a small grid search. Intuitively, φ is a user-specified coefficient that controls how many more resources are available for model scaling, while α, β, γ specify how to assign these extra resources to network width, depth, and resolution respectively.
 
 Using this method, they have achieved a better accuracy than any transfer learning model for almost all the computer vision datasets and also with reduced FLOPS thereby making the model incredibly faster.
 
+### Layers Following EfficientNet
+* ***Batch Normalization Layer - so that pretrained weights of EfficientNetB3 on 'imagenet' won't suffer from covariant shift plus it speedsup the model training***
+* ***Dropout Layer - for Regularization purpose while training***
+* ***Dense Layer - output layer of 10 units with good old 'softmax' activation function*** 
+
+## Model Evaluation
