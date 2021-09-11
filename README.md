@@ -20,13 +20,13 @@ Image Data Generator preprocesses all the images in dataset and returns the tens
 ***Splits the complete tensor image data into a two parts - training data (80%) and testing or validation data (20%), with batch size of 64.***
 
 ## Now, Let's Build The Model Architecture
-Initially, I started with few cnn layers and maxpooling layers. But, wasn't able to yield a good enough score. So, after few more tweeks here there, I decided to use Transfer Learning.
+Initially, I started with few cnn layers and maxpooling layers. But, wasn't able to yield a good enough score. So, after few more tweaks here there, I decided to use Transfer Learning.
 
 ### ***EfficientNet***
 While reading some transfer learning papers, I came across an amazing intuition in a research paper called ***'[EfficientNet - Rethinking Model Scaling for Convolutional Neural Networks](http://proceedings.mlr.press/v97/tan19a/tan19a.pdf) ( which currently is the state-of-the-art model for CNN )'***.
 
 #### Why this is called ***state-of-the-art model*** ?
-The paper proposes a very simple but useful methods for building a neural architecture. So, what I get from the paper is they first used the popular method called ***'[Neural Architecture Search](https://arxiv.org/pdf/2005.11074.pdf)'*** for building a baseline model with few tweeks like optimizing FLOPS rather than latency since they are not targeting any specific hardware device. Then, this search produces an efficient network, which they name ***EfficientNet-B0***.
+The paper proposes a very simple but useful methods for building a neural architecture. So, what I get from the paper is they first used the popular method called ***'[Neural Architecture Search](https://arxiv.org/pdf/2005.11074.pdf)'*** for building a baseline model with few tweaks like optimizing FLOPS rather than latency since they are not targeting any specific hardware device. Then, this search produces an efficient network, which they name ***EfficientNet-B0***.
 
 Second step is to scale the network for bigger models. So, after doing some experiments by scaling architecture parameters ( width, depth and resolution ), they obeserved that scaling all these parameter at once resulting in better accuracy with reduced FLOPS when compared to scaling them individually. And for scaling these paramters, they figured out a very interesting methodology rather than the tedious manual tuning, which they name ***Compound Scaling Method***. This method use a compound coefficient φ to uniformly scales network width, depth, and resolution in a principled way:
 
